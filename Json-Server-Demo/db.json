@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "category": "electronics",
+      "price": 4000,
+      "quantity": 1,
+      "description": "This is a product 1"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "category": "electronics",
+      "price": 4000,
+      "quantity": 1,
+      "description": "This is a product 2"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "category": "books",
+      "price": 1000,
+      "quantity": 1,
+      "description": "This is a product 3"
+    },
+    {
+      "id": 4,
+      "name": "Product 4",
+      "category": "board",
+      "price": 2000,
+      "quantity": 1,
+      "description": "This is a product 4"
+    },
+    {
+      "id": 5,
+      "name": "Product 5",
+      "category": "Pen",
+      "price": 2000,
+      "quantity": 1,
+      "description": "This is a product 5"
+    },
+    {
+      "id": 6,
+      "name": "Product 6",
+      "category": "Earphone",
+      "price": 3500,
+      "quantity": 1,
+      "description": "This is a product 6"
+    },
+    {
+      "id": 7,
+      "name": "Product 7",
+      "category": "Table",
+      "price": 4000,
+      "quantity": 1,
+      "description": "This is a product 7"
+    },
+    {
+      "id": 8,
+      "name": "Product 8",
+      "category": "Chair",
+      "price": 4500,
+      "quantity": 1,
+      "description": "This is a product 8"
+    },
+    {
+      "id": 9,
+      "name": "Product 9",
+      "category": "Product 9",
+      "price": 4000,
+      "quantity": 1,
+      "description": "This is a product 9"
+    },
+    {
+      "id": 10,
+      "name": "Product 10",
+      "category": "Product 10",
+      "price": 4000,
+      "quantity": 1,
+      "description": "This is a product 10"
+    },
+    {
+      "id": 11,
+      "name": "Product 11",
+      "category": "electronics",
+      "price": 6000,
+      "quantity": 1,
+      "description": "This is a product 11"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "rating": 3,
+      "comment": "This is a comment 1",
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "rating": 4,
+      "comment": "This is a comment 2",
+      "productId": 1
+    },
+    {
+      "id": 3,
+      "rating": 5,
+      "comment": "This is a comment 3",
+      "productId": 1
+    },
+    {
+      "id": 4,
+      "rating": 3,
+      "comment": "This is a comment 4",
+      "productId": 2
+    },
+    {
+      "id": 5,
+      "rating": 4,
+      "comment": "This is a comment 5",
+      "productId": 3
+    }
+  ]
+}
