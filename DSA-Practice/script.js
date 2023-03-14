@@ -4,6 +4,7 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -13,21 +14,21 @@ const restaurant = {
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   openingHours: {
-    thu: {
+    [weekdays[3]]: {
       open: 12,
       close: 22,
     },
-    fri: {
+    [weekdays[4]]: {
       open: 11,
       close: 23,
     },
-    sat: {
+    [weekdays[5]]: {
       open: 0, // Open 24 hours
       close: 24,
     },
   },
 
-  order: function (startIndex, mainIndex) {
+  order (startIndex, mainIndex) {
     return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
   },
 
@@ -35,16 +36,52 @@ const restaurant = {
     // console.log(obj);
   // },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  orderPizza: function (mainIndegredient, ...otherIngredient) { 
+  orderPizza (mainIndegredient, ...otherIngredient) { 
     console.log(mainIndegredient);
     console.log(otherIngredient);
   },
 
 };
+
+
+
+
+
+// // Property NAMES
+
+// const properties = Object.keys(restaurant.openingHours);
+// console.log(properties);
+
+// let openStr = `We are open on ${properties.length} days: `;
+
+// for (const day of properties) { 
+//   openStr += `${day}, `;
+// }
+
+// console.log(openStr);
+
+
+// //Property VALUES
+
+// const values = Object.values(restaurant.openingHours);
+// console.log(values);
+
+// // Entry Object
+// const entries = Object.entries(restaurant.openingHours);
+// console.log(entries);
+
+// for (const [key, {open, close}] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
+
+// With Optional Chaining (?.)
+// console.log(restaurant.openingHours.fri?.open);
+
+
 
 // Destructuring objects
 
@@ -213,34 +250,109 @@ const game = {
   },
 };
 
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
 
-// 2.
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 2.
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
-//3.
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// //3.
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-//4.
-const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(playersFinal);
+// //4.
+// const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(playersFinal);
 
-//5.
-const { odds: { team1, x: draw, team2 } } = game;
-console.log(team1, draw, team2);
+// //5.
+// const { odds: { team1, x: draw, team2 } } = game;
+// console.log(team1, draw, team2);
 
-//6.
-const printGoals = function (...players) {
-  console.log(`${players.length} goals were scored`);
-};
+// //6.
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals were scored`);
+// };
 
-// printGoals['Davies', 'Muller', 'Lewandowski', 'Kimmich'];
-// printGoals['Davies', 'Muller'];
-printGoals(...game.scored);
+// // printGoals['Davies', 'Muller', 'Lewandowski', 'Kimmich'];
+// // printGoals['Davies', 'Muller'];
+// printGoals(...game.scored);
 
-//7.
-team1  < team2 ? console.log('Team 1 is more likely to win') : console.log('Team 2 is more likely to win');
+// //7.
+// team1  < team2 ? console.log('Team 1 is more likely to win') : console.log('Team 2 is more likely to win');
 
+
+// Coding challenge #2
+
+// const entries = Object.entries(game.scored);
+
+// for (const [i, player] of game.scored.entries()) {
+//   //const num = Number(i) + 1;
+//   console.log(`Goal ${i+1}: ${player}`);
+// }
+
+// const odds = Object.values(game.odds);
+// let average = 0;
+
+// for (const odd of odds) {
+//   average += odd;
+// }
+
+// console.log(average / odds.length);
+
+// for (const [team, odds] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr}  ${odds}`);
+// }
+
+// const orderSet = new Set (['Pasta', 'Pizza', 'Pizza',
+//   'Risoto', 'Pasta', 'Pizza', 'Pizza']);
+
+// console.log(orderSet);
+  
+// for (const order of orderSet) { 
+//   console.log(order);
+// }
+
+// const staff = ['Waiter', 'Chef', 'Waiter',
+//   'Manager', 'Chef', 'Waiter'];
+
+// const staffSet = [...new Set(staff)];
+// console.log(staffSet);
+  
+// console.log(staffSet.length);
+
+// const res = new Map();
+// res.set('name', 'Italinao');
+// res.set(1, 'Frienze Italy');
+
+// console.log(res.set(2, 'Lisbn, Portgual'));
+
+// const question = new Map([
+//   ['question', 'What is the best programming lanugage in the world?'],
+//   [1, 'C'],
+//   [2, 'C++'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'correct'],
+//   [false, 'Try again'],
+// ]);
+
+// console.log(question);
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, 'Substitution'],
+  [47, '⚽ GOAL'],
+  [61, 'Substitution'],
+  [64, 'Yellow card'],
+  [69, 'Red card'],
+  [70, 'Substitution'],
+  [72, 'Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, 'Yellow card'],
+]);
+
+const events = new Set(gameEvents);
+console.log(events);
