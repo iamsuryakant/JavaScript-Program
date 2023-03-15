@@ -354,5 +354,50 @@ const gameEvents = new Map([
   [92, 'Yellow card'],
 ]);
 
-const events = new Set(gameEvents);
-console.log(events);
+
+// console.log(gameEvents.values());
+// const events = new Set(gameEvents.values());
+// console.log(events);
+
+// const time = [...gameEvents.keys()].pop();
+
+// console.log(`An event happened, on average, every ${time / gameEvents.size} minutes`);
+
+
+// for (const [min, event] of gameEvents) {
+//   const half = min <= 45 ? 'FIRST' : 'SECOND';
+//   console.log(`[${half} HALF] ${min}: ${event}`);
+// }
+
+// Strings
+
+const airline = 'Spice Jet';
+const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('e'));
+
+// console.log(airline.lastIndexOf('e'));
+
+// console.log(airline.slice(4));
+
+// console.log(airline.slice(4, 9));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+
+// console.log(airline.slice(airline.lastIndexOf(' ')));
+
+// console.log(airline.slice(-2));
+
+
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replaceAll('door', 'gate'));
+
