@@ -397,7 +397,12 @@ const plane = 'A320';
 // console.log(airline.slice(-2));
 
 
-const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+// const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
 
-console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+const flights1 = '_Delayed_Departure;fao93766109;txl2133758440;11:25 + _Arrival; fao93766109; txl2133758440; 11: 25';
+
+console.log(flights1.split('+'));
+
 
