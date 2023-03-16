@@ -101,6 +101,8 @@ greetArr('Hello')('Raviprakash');
 
 */
 
+
+/*
 const Airakasa = {
     airline: 'AirAkasa',
     iataCode: 'ITA',
@@ -108,11 +110,37 @@ const Airakasa = {
 
     book(flightNum, name) {
         console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode} ${flightNum}`);
+        this.booking.push({ flight: `${this.iataCode} ${flightNum}`, name: name });
     },
 
 };
 
 Airakasa.book(239, 'Suryakant');
 Airakasa.book(635, 'Prakash');
+
+const book = Airakasa.book;
+
+const swiss = {
+    airline: 'Swiss',
+    iataCode: 'LX',
+    booking: [],
+};
+
+book.call(swiss, 583, 'Suryakant');
+
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+
+// Bind method
+
+const bookSw = book.bind(swiss);
+
+bookSw(23, 'Surya');
+
+
+*/
 
 
