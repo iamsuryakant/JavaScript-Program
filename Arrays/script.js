@@ -64,9 +64,50 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 const displayMovements = function (movements) {
-   
-}
 
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+    
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    
+    
+    const html = `
+      <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+
+displayMovements(account1.movements);
+
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
+const createUsername = function (acc) {
+  acc.forEach(function (accs) {
+
+    accs.username = accs.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+    
+  });
+};
+
+// stw
+
+createUsername(accounts);
 
 
 
@@ -183,6 +224,8 @@ movements.forEach(function (mov, i, arr) {
 
 */
 
+
+/*
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -203,3 +246,87 @@ console.log(currrenciesUnq);
 currrenciesUnq.forEach(function (value, key, map) {
   console.log(`${key}: ${value}`);
 })
+
+*/
+
+/*
+const checkDogs = function (dogsjulia, dogsKate) {
+  
+  const dogsjuliaCorrected = dogsjulia.slice();
+  dogsjuliaCorrected.splice(0, 1);
+  dogsjuliaCorrected.slice(1, 3);
+
+  const dogs = dogsjuliaCorrected.concat(dogsKate);
+
+  console.log(dogs);
+
+  dogs.forEach(function (dog, i) {
+    if (dog > 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy`);
+    }
+  });
+
+}
+
+checkDogs([3, 5, 6, 7, 12], [4, 1, 15, 3, 8]);
+
+*/
+
+
+/*
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const conversionRate = 1.1;
+
+const movementsusd = movements.map(function (mov) {
+  return mov * conversionRate;
+});
+
+console.log(movements);
+console.log(movementsusd);
+
+const movusd = [];
+for (const mov of movements) {
+  movusd.push(mov * conversionRate);
+}
+
+console.log(movusd);
+
+
+const mvusd = movements.map(mov =>
+  mov * conversionRate
+
+);
+
+console.log(mvusd);
+
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+/*
+
+
+const deposits = movements.filter(function (mov) {
+
+  return mov > 0;
+})
+
+console.log(movements);
+
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log(withdrawals);
+
+*/
+
+const balance = movements.reduce(function (acc, curr, currInd, arr) {
+  console.log(`Iteration ${currInd}: ${acc}`);
+  return acc + curr;
+}, 0);
+
+console.log(balance);
