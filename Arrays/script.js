@@ -111,12 +111,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -151,9 +151,57 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogoutTimer = function(){
+
+  const tick = function(){
+
+    const min = String(Math.trunc(time/60)).padStart(2, 0);
+    const sec = String(time%60).padStart(2, 0);
+
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+
+
+
+    if(time === 0){
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started'
+      containerApp.style.opacity = 0;
+    }
+
+    time = time -1;
+    // when 0 seconds, stop timer and logout user
+  }
+  // Set time to 5 minutes
+
+  let time = 600;
+
+
+
+
+  // Call the timer to every seconds
+  tick();
+  const timer = setInterval(tick,1000);
+
+  return timer;
+
+
+}
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
+
+
+const now = new Date();
+const day = `${now.getDate()}`.padStart(2,0);
+const month = `${now.getMonth() + 1}`.padStart(2,0);
+const year = now.getFullYear();
+const hour = now.getHours();
+const min = now.getMinutes();
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -174,6 +222,12 @@ btnLogin.addEventListener('click', function (e) {
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    // Timer
+
+    if(timer) clearInterval(timer);
+
+    timer = startLogoutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -200,13 +254,19 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    //Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
+
   }
 });
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
+
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -253,5 +313,19 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 
-console.log(23 === 23.0);
-console.log(Number('23'));
+// console.log(23 === 23.0);
+// console.log(Number('23'));
+
+/*
+
+const now = new Date();
+
+console.log(now);
+
+console.log(new Date(account1.movementsDates[0]));
+
+*/
+
+setTimeout(() => console.log('Here is your pizza'), 3000);
+
+
