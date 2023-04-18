@@ -101,6 +101,7 @@ jessica.greet();
 
 */
 
+/*
 
 const getCountryData = function(country){
   fetch(`https://restcountries.com/v3.1/name/${country}`)
@@ -114,3 +115,115 @@ const getCountryData = function(country){
 }
 
 getCountryData('india');
+
+*/
+/*
+
+// Building Promises
+
+const lotteryPromise = new Promise(function(resolve,
+                                            reject){
+  console.log("Value finding");
+
+  setTimeout(function(){
+    if(Math.random() >= 0.5){
+      resolve("Got the value");
+    }else{
+      reject( new Error("Not the right value"));
+    }
+  }, 2)
+
+});
+
+
+lotteryPromise.then(res => console.log(res))
+  .catch(err => console.error(err));
+
+// Promisifying Set Timeout
+const wait = function(seconds){
+
+  return new Promise(function(resolve){
+    setTimeout(resolve, seconds*1000);
+  });
+};
+
+wait(2).then(() => {
+  console.log("Waited for 2 seconds");
+  return wait(1);
+}).then(() =>{
+  console.log('Waited for 1 seconds');
+});
+
+*/
+
+
+
+
+/*
+const getPosition = function(){
+  return new Promise(function(resolve, reject){
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+
+  })
+};
+
+getPosition().then(pos => console.log(pos));
+
+*/
+
+/*
+
+const imgContainer = docum
+
+const createImage = function(imgPath){
+  return new Promise(function(resolve, reject){
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+
+  })
+}
+
+*/
+
+/*
+
+
+const whereamI = async function (country){
+  const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+
+  const data = await res.json();
+  console.log(data);
+
+
+};
+
+whereamI('india');
+console.log('First');
+
+*/
+
+
+// async function getJSON(s) {
+//
+// }
+
+const getCountries = async function(c1,c2, c3){
+  try{
+    const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+    const [data2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+    const [data3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+
+
+    console.log([data1.capital, data2.capital, data3.capital]);
+  }catch (err){
+    console.error(err);
+  }
+}
+
+getCountries('india', 'usa', 'canada');
